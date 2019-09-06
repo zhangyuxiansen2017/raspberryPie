@@ -16,6 +16,7 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <!--打包跳过测试-->
         <skipTests>true</skipTests>
     </properties>
 
@@ -35,6 +36,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--pi4j-1.2依赖-->
         <dependency>
             <groupId>com.pi4j</groupId>
             <artifactId>pi4j-core</artifactId>

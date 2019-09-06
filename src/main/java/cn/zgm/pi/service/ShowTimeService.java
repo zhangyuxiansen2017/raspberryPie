@@ -25,6 +25,7 @@ public class ShowTimeService {
     @Async("taskExecutor")
     public void showTime() {
         while (true) {
+            //死循环显示时间，快速切换时人眼难察觉闪烁。
             showNum(4, LocalTime.now().getHour() / 10, PinState.HIGH);
             showNum(3, LocalTime.now().getHour() % 10, PinState.LOW);
             showNum(2, LocalTime.now().getMinute() / 10, PinState.HIGH);
@@ -237,6 +238,7 @@ public class ShowTimeService {
         if (no == 4) {
             vc04.high();
         }
+        //必须关闭io口，不然会报错某个gpio未退出
         gpioController.shutdown();
         gpioController.unprovisionPin(vc01, vc02, vc03, vc04, gp25, gp24, gp23, gp22, gp21, gp27, gp28, gp29);
     }
