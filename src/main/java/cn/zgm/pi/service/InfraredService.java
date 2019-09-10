@@ -15,6 +15,7 @@ public class InfraredService {
 
 
     public void infrared() throws InterruptedException {
+
         GpioPinDigitalInput input = gpioController.provisionDigitalInputPin(RaspiPin.GPIO_25, PinPullResistance.PULL_DOWN);
 
         GpioPinDigitalOutput output = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_29, PinState.LOW);
