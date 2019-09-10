@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @author Mr. Zhang
  * @description
@@ -20,8 +22,8 @@ public class UltrasonicController {
     private UltrasonicService ultrasonicService;
 
     @GetMapping("/get")
-    public String getDistance() {
-        ultrasonicService.ultrasonic();
-        return "超声波测距已启动";
+    public List<Double> getDistance() {
+        List<Double> list = ultrasonicService.ultrasonic();
+        return list;
     }
 }
