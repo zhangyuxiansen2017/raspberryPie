@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>定时任务</title>
+</head>
+<link th:href="@{/webjars/bootstrap/3.0.0/css/bootstrap.css}" rel="stylesheet">
+<link th:href="@{/layer/theme/default/layer.css}" rel="stylesheet">
+<body>
+<div style="width: 50%;margin: 0 auto;margin-top: 100px;">
+    <button class="btn btn-info btn-sm" style="margin-top: 10px;margin-bottom: 10px;" data-toggle="modal"
+            data-target="#myModal" id="addJob">新增定时任务
+    </button>
+    <table class="table table-hover">
+        <thead>
+        <tr style="text-align: center">
+            <td>id</td>
+            <td>任务名</td>
+            <td>任务组</td>
+            <td>方法名</td>
+            <td>表达式</td>
+            <td>参数类型</td>
+            <td>状态</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="job:${jobs}" style="text-align: center">
+            <td th:text="${job.jobId}"></td>
+            <td th:text="${job.jobName}"></td>
+            <td th:text="${job.jobGroup}"></td>
+            <td th:text="${job.methodName}"></td>
+            <td th:text="${job.cronExpression}"></td>
+            <td th:text="${job.methodParams}"></td>
+            <td th:text="${job.status}==0 ? '启用':'停用'"></td>
+            <td>
+                <button type="button" class="btn btn-success btn-sm" th:onclick="'resume('+${job.jobId}+')'"
+                        th:disabled="${job.status}==0 ? true:false">执行
+                </button>
+                <button type="button" class="btn btn-danger btn-sm" th:onclick="'pause('+${job.jobId}+')'"
+                        th:disabled="${job.status}==0 ? false:true">停止
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">新增定时任务</h4>
+            </div>
+            <form class="form-horizontal">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">任务名</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" placeholder="任务名" name="jobName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">任务组</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" placeholder="任务组" name="jobGroup" value="TaskService" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">方法名</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="methodName" id="methodName">
+                                <option selected>请选择方法名</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">参数值</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" placeholder="参数值(多个请用&隔开)" name="methodParams">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">表达式</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" placeholder="表达式" name="cronExpression">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">开启任务</label>
+                        <div class="col-sm-4">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="status" value="0">是
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script th:src="@{/webjars/jquery/1.9.0/jquery.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.0.0/js/bootstrap.js}"></script>
+<script th:src="@{/layer/layer.js}"></script>
+<script>
+    var jobGroup
+
+    $('#addJob').click(function () {
+        $.ajax({
+            url: '/job/getMethods',
+            type: 'get',
+            dataType: 'json',
+            success: function (res) {
+                let data = res.data.methods;
+                for(key in data){
+
+                }
+            }
+        });
+    });
+    function resume(id) {
+        layer.confirm('立即执行一次还是定时执行？', {
+            btn: ['立即执行', '定时执行']
+        }, function () {
+            $.ajax({
+                url: '/job/doJob',
+                type: 'get',
+                data: {'jobId': id},
+                dataType: 'json',
+                success: function (data) {
+                    if (data.code == 0) {
+                        layer.msg('立即执行成功！', {icon: 1});
+                        window.location.reload();
+                    } else {
+                        layer.msg('立即执行失败！', {icon: 1});
+                    }
+                }
+            });
+        }, function () {
+            $.ajax({
+                url: '/job/doTimedJob',
+                type: 'get',
+                data: {'jobId': id},
+                dataType: 'json',
+                success: function (data) {
+                    if (data.code == 0) {
+                        layer.msg('定时执行成功！', {icon: 1});
+                        window.location.reload();
+                    } else {
+                        layer.msg('定时执行失败！', {icon: 1});
+                    }
+                }
+            });
+        });
+    }
+
+    function pause(id) {
+        $.ajax({
+            url: '/job/stopJob',
+            type: 'get',
+            data: {'jobId': id},
+            dataType: 'json',
+            success: function (data) {
+                if (data.code == 0) {
+                    layer.msg('暂停成功！', {icon: 1});
+                    window.location.reload();
+                } else {
+                    layer.msg('暂停失败！', {icon: 1});
+                }
+
+            }
+        });
+    }
+</script>
+</body>
+</html>
