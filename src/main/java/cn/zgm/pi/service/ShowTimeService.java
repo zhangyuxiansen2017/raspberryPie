@@ -34,198 +34,114 @@ public class ShowTimeService {
     }
 
     private void showNum(int no, int num, PinState pinState) {
-        GpioPinDigitalOutput vc01 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_26, "", PinState.LOW);
-        GpioPinDigitalOutput vc02 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_00, "", PinState.LOW);
-        GpioPinDigitalOutput vc03 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_02, "", PinState.LOW);
-        GpioPinDigitalOutput vc04 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_03, "", PinState.LOW);
-        GpioPinDigitalOutput gp25 = null;
-        GpioPinDigitalOutput gp24 = null;
-        GpioPinDigitalOutput gp23 = null;
-        GpioPinDigitalOutput gp22 = null;
-        GpioPinDigitalOutput gp21 = null;
-        GpioPinDigitalOutput gp29 = null;
-        GpioPinDigitalOutput gp28 = null;
-        GpioPinDigitalOutput gp27 = null;
+        GpioPinDigitalOutput vc01 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_03, PinState.LOW);
+        GpioPinDigitalOutput vc02 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_05, PinState.LOW);
+        GpioPinDigitalOutput vc03 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_04, PinState.LOW);
+        GpioPinDigitalOutput vc04 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_06, PinState.LOW);
+
+
+        GpioPinDigitalOutput a = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_27, PinState.HIGH);
+        GpioPinDigitalOutput b = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_29, PinState.HIGH);
+        GpioPinDigitalOutput c = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_22, PinState.HIGH);
+        GpioPinDigitalOutput d = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_24, PinState.HIGH);
+        GpioPinDigitalOutput e = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_25, PinState.HIGH);
+        GpioPinDigitalOutput f = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_28, PinState.HIGH);
+        GpioPinDigitalOutput g = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_21, PinState.HIGH);
+
+        GpioPinDigitalOutput dos = null;
         if (num == 0) {
-            //A
-            gp25 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_25, "", PinState.LOW);
-            //B
-            gp24 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_24, "", PinState.LOW);
-            //C
-            gp23 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_23, "", PinState.LOW);
-            //D
-            gp22 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_22, "", PinState.LOW);
-            //E
-            gp21 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_21, "", PinState.LOW);
-            //F
-            gp29 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_29, "", PinState.LOW);
-            //G
-            gp28 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_28, "", PinState.HIGH);
-            //DO
-            gp27 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_27, "", pinState);
+            a.low();
+            b.low();
+            c.low();
+            d.low();
+            e.low();
+            f.low();
+            g.high();
         }
         if (num == 1) {
-            //A
-            gp25 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_25, "", PinState.HIGH);
-            //B
-            gp24 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_24, "", PinState.LOW);
-            //C
-            gp23 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_23, "", PinState.LOW);
-            //D
-            gp22 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_22, "", PinState.HIGH);
-            //E
-            gp21 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_21, "", PinState.HIGH);
-            //F
-            gp29 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_29, "", PinState.HIGH);
-            //G
-            gp28 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_28, "", PinState.HIGH);
-            //DO
-            gp27 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_27, "", pinState);
+            a.high();
+            b.low();
+            c.low();
+            d.high();
+            e.high();
+            f.high();
+            g.high();
         }
         if (num == 2) {
-            //A
-            gp25 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_25, "", PinState.LOW);
-            //B
-            gp24 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_24, "", PinState.LOW);
-            //C
-            gp23 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_23, "", PinState.HIGH);
-            //D
-            gp22 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_22, "", PinState.LOW);
-            //E
-            gp21 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_21, "", PinState.LOW);
-            //F
-            gp29 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_29, "", PinState.HIGH);
-            //G
-            gp28 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_28, "", PinState.LOW);
-            //DO
-            gp27 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_27, "", pinState);
+            a.low();
+            b.low();
+            c.high();
+            d.low();
+            e.low();
+            f.high();
+            g.low();
         }
         if (num == 3) {
-            //A
-            gp25 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_25, "", PinState.LOW);
-            //B
-            gp24 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_24, "", PinState.LOW);
-            //C
-            gp23 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_23, "", PinState.LOW);
-            //D
-            gp22 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_22, "", PinState.LOW);
-            //E
-            gp21 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_21, "", PinState.HIGH);
-            //F
-            gp29 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_29, "", PinState.HIGH);
-            //G
-            gp28 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_28, "", PinState.LOW);
-            //DO
-            gp27 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_27, "", pinState);
+            a.low();
+            b.low();
+            c.low();
+            d.low();
+            e.high();
+            f.high();
+            g.low();
         }
         if (num == 4) {
-            //A
-            gp25 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_25, "", PinState.HIGH);
-            //B
-            gp24 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_24, "", PinState.LOW);
-            //C
-            gp23 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_23, "", PinState.LOW);
-            //D
-            gp22 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_22, "", PinState.HIGH);
-            //E
-            gp21 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_21, "", PinState.HIGH);
-            //F
-            gp29 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_29, "", PinState.LOW);
-            //G
-            gp28 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_28, "", PinState.LOW);
-            //DO
-            gp27 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_27, "", pinState);
+            a.high();
+            b.low();
+            c.low();
+            d.high();
+            e.high();
+            f.low();
+            g.low();
         }
         if (num == 5) {
-            //A
-            gp25 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_25, "", PinState.LOW);
-            //B
-            gp24 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_24, "", PinState.HIGH);
-            //C
-            gp23 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_23, "", PinState.LOW);
-            //D
-            gp22 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_22, "", PinState.LOW);
-            //E
-            gp21 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_21, "", PinState.HIGH);
-            //F
-            gp29 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_29, "", PinState.LOW);
-            //G
-            gp28 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_28, "", PinState.LOW);
-            //DO
-            gp27 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_27, "", pinState);
+            a.low();
+            b.high();
+            c.low();
+            d.low();
+            e.high();
+            f.low();
+            g.low();
         }
         if (num == 6) {
-            //A
-            gp25 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_25, "", PinState.LOW);
-            //B
-            gp24 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_24, "", PinState.HIGH);
-            //C
-            gp23 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_23, "", PinState.LOW);
-            //D
-            gp22 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_22, "", PinState.LOW);
-            //E
-            gp21 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_21, "", PinState.LOW);
-            //F
-            gp29 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_29, "", PinState.LOW);
-            //G
-            gp28 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_28, "", PinState.LOW);
-            //DO
-            gp27 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_27, "", pinState);
+            a.low();
+            b.low();
+            c.high();
+            d.low();
+            e.low();
+            f.low();
+            g.low();
         }
         if (num == 7) {
-            //A
-            gp25 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_25, "", PinState.LOW);
-            //B
-            gp24 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_24, "", PinState.LOW);
-            //C
-            gp23 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_23, "", PinState.LOW);
-            //D
-            gp22 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_22, "", PinState.HIGH);
-            //E
-            gp21 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_21, "", PinState.HIGH);
-            //F
-            gp29 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_29, "", PinState.HIGH);
-            //G
-            gp28 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_28, "", PinState.HIGH);
-            //DO
-            gp27 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_27, "", pinState);
+            a.low();
+            b.low();
+            c.low();
+            d.high();
+            e.high();
+            f.high();
+            g.high();
         }
         if (num == 8) {
-            //A
-            gp25 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_25, "", PinState.LOW);
-            //B
-            gp24 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_24, "", PinState.LOW);
-            //C
-            gp23 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_23, "", PinState.LOW);
-            //D
-            gp22 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_22, "", PinState.LOW);
-            //E
-            gp21 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_21, "", PinState.LOW);
-            //F
-            gp29 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_29, "", PinState.LOW);
-            //G
-            gp28 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_28, "", PinState.LOW);
-            //DO
-            gp27 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_27, "", pinState);
+            a.low();
+            b.low();
+            c.low();
+            d.low();
+            e.low();
+            f.low();
+            g.low();
         }
         if (num == 9) {
-            //A
-            gp25 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_25, "", PinState.LOW);
-            //B
-            gp24 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_24, "", PinState.LOW);
-            //C
-            gp23 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_23, "", PinState.LOW);
-            //D
-            gp22 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_22, "", PinState.LOW);
-            //E
-            gp21 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_21, "", PinState.HIGH);
-            //F
-            gp29 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_29, "", PinState.LOW);
-            //G
-            gp28 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_28, "", PinState.LOW);
-            //DO
-            gp27 = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_27, "", pinState);
+            a.low();
+            b.low();
+            c.low();
+            d.low();
+            e.high();
+            f.low();
+            g.low();
         }
+
+        dos = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_23, pinState);
+
         if (no == 1) {
             vc01.high();
         }
@@ -238,8 +154,9 @@ public class ShowTimeService {
         if (no == 4) {
             vc04.high();
         }
+
         //必须关闭io口，不然会报错某个gpio未退出
         gpioController.shutdown();
-        gpioController.unprovisionPin(vc01, vc02, vc03, vc04, gp25, gp24, gp23, gp22, gp21, gp27, gp28, gp29);
+        gpioController.unprovisionPin(vc01, vc02, vc03, vc04, a, b, c, d, e, f, g, dos);
     }
 }
