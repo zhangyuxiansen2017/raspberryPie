@@ -7,7 +7,7 @@
 <link th:href="@{/webjars/bootstrap/3.0.0/css/bootstrap.css}" rel="stylesheet">
 <link th:href="@{/layer/theme/default/layer.css}" rel="stylesheet">
 <body>
-<div style="width: 50%;margin: 0 auto;margin-top: 100px;">
+<div style="width: 70%;margin: 0 auto;margin-top: 100px;">
     <button class="btn btn-info btn-sm" style="margin-top: 10px;margin-bottom: 10px;" data-toggle="modal"
             data-target="#myModal" id="addJob">新增定时任务
     </button>
@@ -17,10 +17,10 @@
             <td>id</td>
             <td>任务名</td>
             <td>任务组</td>
-            <td>方法名</td>
-            <td>表达式</td>
-            <td>参数类型</td>
-            <td>状态</td>
+            <td>目标字符串</td>
+            <td>任务表达式</td>
+            <td>cron计划策略</td>
+            <td>任务状态</td>
             <td>操作</td>
         </tr>
         </thead>
@@ -29,9 +29,9 @@
             <td th:text="${job.jobId}"></td>
             <td th:text="${job.jobName}"></td>
             <td th:text="${job.jobGroup}"></td>
-            <td th:text="${job.methodName}"></td>
+            <td th:text="${job.invokeTarget}"></td>
             <td th:text="${job.cronExpression}"></td>
-            <td th:text="${job.methodParams}"></td>
+            <td th:text="${job.misfirePolicy}"></td>
             <td th:text="${job.status}==0 ? '启用':'停用'"></td>
             <td>
                 <button type="button" class="btn btn-success btn-sm" th:onclick="'resume('+${job.jobId}+')'"

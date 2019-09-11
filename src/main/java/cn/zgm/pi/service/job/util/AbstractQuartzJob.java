@@ -2,8 +2,7 @@ package cn.zgm.pi.service.job.util;
 
 import cn.zgm.pi.entity.Job;
 import org.quartz.JobExecutionContext;
-
-import java.util.Date;
+import org.quartz.JobExecutionException;
 
 /**
  * @author Mr. Zhang
@@ -13,20 +12,10 @@ import java.util.Date;
  */
 public abstract class AbstractQuartzJob implements org.quartz.Job {
 
-    /**
-     * 线程本地变量
-     */
-    private static ThreadLocal<Date> threadLocal = new ThreadLocal<>();
 
+    @Override
+    public void execute(JobExecutionContext context) throws JobExecutionException {
 
-    /**
-     * 执行前
-     *
-     * @param context 工作执行上下文对象
-     * @param job     系统计划任务
-     */
-    protected void before(JobExecutionContext context, Job job) {
-        threadLocal.set(new Date());
     }
 
     /**

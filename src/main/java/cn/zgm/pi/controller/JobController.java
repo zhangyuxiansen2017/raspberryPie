@@ -1,10 +1,11 @@
 package cn.zgm.pi.controller;
 
 import cn.zgm.pi.entity.Job;
-import cn.zgm.pi.service.job.JobService;
+import cn.zgm.pi.service.job.IJobService;
 import cn.zgm.pi.service.job.TaskService;
 import cn.zgm.pi.util.ReflectUtil;
 import cn.zgm.pi.util.ResultInfo;
+import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +25,7 @@ import java.util.Map;
 public class JobController {
 
     @Autowired
-    private JobService jobService;
+    private IJobService jobService;
 
     /**
      * 获取所有任务页面
@@ -44,13 +44,18 @@ public class JobController {
     /**
      * 暂停任务
      *
-     * @param jobId
+     * @param Job
      * @return
      */
     @ResponseBody
     @GetMapping(value = "/stopJob")
-    public ResultInfo stopJob(Long jobId) {
-        int i = jobService.pauseJob(jobId);
+    public ResultInfo stopJob(Job Job) {
+        int i = 0;
+        try {
+            i = jobService.pauseJob(Job);
+        } catch (SchedulerException e) {
+            return ResultInfo.fail();
+        }
         if (i > 0) {
             return ResultInfo.success();
         }
@@ -65,8 +70,14 @@ public class JobController {
      */
     @ResponseBody
     @GetMapping(value = "/doTimedJob")
-    public ResultInfo doTimedJob(Long jobId) {
-        int i = jobService.resumeJob(jobId);
+    public ResultInfo doTimedJob(Job job) {
+        int i = 0;
+        try {
+            i = jobService.resumeJob(job);
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+            return ResultInfo.fail();
+        }
         if (i > 0) {
             return ResultInfo.success();
         }
@@ -76,17 +87,20 @@ public class JobController {
     /**
      * 立刻执行一次
      *
-     * @param jobId
+     * @param job
      * @return
      */
     @ResponseBody
     @GetMapping(value = "/doJob")
-    public ResultInfo doJob(Long jobId) {
-        int i = jobService.run(jobId);
-        if (i > 0) {
-            return ResultInfo.success();
+    public ResultInfo doJob(Job job) {
+        try {
+            jobService.run(job);
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+            return ResultInfo.fail();
         }
-        return ResultInfo.fail();
+
+        return ResultInfo.success();
     }
 
     @ResponseBody
