@@ -14,16 +14,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class UltrasonicService {
     @Autowired
-    private GpioController gpio;
+    private GpioController gpioController;
 
     @Async("taskExecutor")
     public void ultrasonic() {
         Double light = 100.0;
 
 
-        GpioPinDigitalOutput led = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_27, PinState.LOW);
-        GpioPinDigitalOutput sensorTriggerPin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00);
-        GpioPinDigitalInput sensorEchoPin = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, PinPullResistance.PULL_DOWN);
+        GpioPinDigitalOutput led = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_27, PinState.LOW);
+        GpioPinDigitalOutput sensorTriggerPin = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_00);
+        GpioPinDigitalInput sensorEchoPin = gpioController.provisionDigitalInputPin(RaspiPin.GPIO_02, PinPullResistance.PULL_DOWN);
 
         while (true) {
             try {
