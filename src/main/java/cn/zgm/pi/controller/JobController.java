@@ -1,20 +1,18 @@
 package cn.zgm.pi.controller;
 
 import cn.zgm.pi.entity.Job;
-import cn.zgm.pi.service.job.IJobService;
-import cn.zgm.pi.service.job.TaskService;
-import cn.zgm.pi.util.ReflectUtil;
+import cn.zgm.pi.service.job.service.IJobService;
 import cn.zgm.pi.util.ResultInfo;
 import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author zhang
@@ -65,7 +63,7 @@ public class JobController {
     /**
      * 定时执行
      *
-     * @param jobId
+     * @param job
      * @return
      */
     @ResponseBody
@@ -104,10 +102,24 @@ public class JobController {
     }
 
     @ResponseBody
-    @GetMapping(value = "/getMethods")
-    public ResultInfo getMethods() {
-        Map<String, List<String>> methods = ReflectUtil.getMethods(new TaskService());
-        return ResultInfo.success().data("methods", methods);
+    @PostMapping(value = "/add")
+    public ResultInfo addJob(Job job) {
+        try {
+            boolean b = jobService.checkCronExpressionIsValid(job.getCronExpression());
+            if (!b) {
+                return ResultInfo.fail().data("msg", "Cron表达式错误!");
+            }
+            int i = jobService.insertJob(job);
+            if (i != 0) {
+                return ResultInfo.success();
+            } else {
+                return ResultInfo.fail();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultInfo.fail();
+        }
+
     }
 
 

@@ -2,20 +2,19 @@ package cn.zgm.pi.service.job.util;
 
 
 import cn.zgm.pi.entity.Job;
-import cn.zgm.pi.util.TaskException;
 import org.quartz.*;
 
 /**
  * @author Mr. Zhang
  * @description 定时任务工具类
- * @date 2019-09-10 17:46
+ * @date 2019-09-12 11:02
  * @website https://www.zhangguimin.cn
  */
 public class ScheduleUtils {
     /**
      * 得到quartz任务类
      *
-     * @param sysJob 执行计划
+     * @param job 执行计划
      * @return 具体执行任务类
      */
     private static Class<? extends org.quartz.Job> getQuartzJobClass(Job job) {

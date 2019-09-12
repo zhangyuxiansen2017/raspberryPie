@@ -1,11 +1,11 @@
-package cn.zgm.pi.service.job;
+package cn.zgm.pi.service.job.service;
 
 import cn.zgm.pi.entity.Job;
 import cn.zgm.pi.mapper.JobMapper;
 import cn.zgm.pi.service.job.util.CronUtils;
 import cn.zgm.pi.service.job.util.ScheduleConstants;
 import cn.zgm.pi.service.job.util.ScheduleUtils;
-import cn.zgm.pi.util.TaskException;
+import cn.zgm.pi.service.job.util.TaskException;
 import org.quartz.JobDataMap;
 import org.quartz.JobKey;
 import org.quartz.Scheduler;
@@ -18,9 +18,10 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
- * 定时任务调度信息 服务层
- *
- * @author ruoyi
+ * @author Mr. Zhang
+ * @description 定时任务调度信息 服务层
+ * @date 2019-09-12 11:00
+ * @website https://www.zhangguimin.cn
  */
 @Service
 public class JobServiceImpl implements IJobService {
@@ -126,8 +127,8 @@ public class JobServiceImpl implements IJobService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteJobByIds(String ids) throws SchedulerException {
-        String[] jobIds = ids.split(",");
-        for (String jobId : jobIds) {
+        String[] split = ids.split(",");
+        for (String jobId : split) {
             Job job = jobMapper.selectJobById(Long.valueOf(jobId));
             deleteJob(job);
         }
@@ -160,7 +161,7 @@ public class JobServiceImpl implements IJobService {
     @Transactional(rollbackFor = Exception.class)
     public void run(Job job) throws SchedulerException {
         Long jobId = job.getJobId();
-        String jobGroup = job.getJobGroup();
+        String jobGroup = "DEFAULT";
         Job properties = selectJobById(job.getJobId());
         // 参数
         JobDataMap dataMap = new JobDataMap();
@@ -227,6 +228,4 @@ public class JobServiceImpl implements IJobService {
     public boolean checkCronExpressionIsValid(String cronExpression) {
         return CronUtils.isValid(cronExpression);
     }
-
-
 }

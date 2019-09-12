@@ -1,33 +1,38 @@
 package cn.zgm.pi.service.job.util;
 
 /**
- * @author zhang
- * @date 2018年12月11日 下午4:00:25
+ * @author Mr. Zhang
+ * @description 任务调度通用常量
+ * @date 2019-09-12 11:01
+ * @website https://www.zhangguimin.cn
  */
 public interface ScheduleConstants {
-    String TASK_CLASS_NAME = "__TASK_CLASS_NAME__" ;
+    String TASK_CLASS_NAME = "TASK_CLASS_NAME";
 
-    String TASK_PROPERTIES = "__TASK_PROPERTIES__" ;
+    /**
+     * 执行目标key
+     */
+    String TASK_PROPERTIES = "TASK_PROPERTIES";
 
     /**
      * 默认
      */
-    String MISFIRE_DEFAULT = "0" ;
+    String MISFIRE_DEFAULT = "0";
 
     /**
      * 立即触发执行
      */
-    String MISFIRE_IGNORE_MISFIRES = "1" ;
+    String MISFIRE_IGNORE_MISFIRES = "1";
 
     /**
      * 触发一次执行
      */
-    String MISFIRE_FIRE_AND_PROCEED = "2" ;
+    String MISFIRE_FIRE_AND_PROCEED = "2";
 
     /**
      * 不触发立即执行
      */
-    String MISFIRE_DO_NOTHING = "3" ;
+    String MISFIRE_DO_NOTHING = "3";
 
     enum Status {
         /**

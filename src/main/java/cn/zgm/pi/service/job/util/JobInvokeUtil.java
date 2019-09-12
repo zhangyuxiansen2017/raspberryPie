@@ -11,9 +11,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 任务执行工具
- *
- * @author ruoyi
+ * @author Mr. Zhang
+ * @description 任务执行工具
+ * @date 2019-09-12 11:01
+ * @website https://www.zhangguimin.cn
  */
 public class JobInvokeUtil {
     /**
@@ -152,7 +153,7 @@ public class JobInvokeUtil {
         Object[] classs = new Object[methodParams.size()];
         int index = 0;
         for (Object[] os : methodParams) {
-            classs[index] = os[0];
+            classs[index] = (Object) os[0];
             index++;
         }
         return classs;

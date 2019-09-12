@@ -5,9 +5,10 @@ import org.quartz.DisallowConcurrentExecution;
 import org.quartz.JobExecutionContext;
 
 /**
- * 定时任务处理（禁止并发执行）
- *
- * @author ruoyi
+ * @author Mr. Zhang
+ * @description 定时任务处理（禁止并发执行）
+ * @date 2019-09-12 11:01
+ * @website https://www.zhangguimin.cn
  */
 @DisallowConcurrentExecution
 public class QuartzDisallowConcurrentExecution extends AbstractQuartzJob {

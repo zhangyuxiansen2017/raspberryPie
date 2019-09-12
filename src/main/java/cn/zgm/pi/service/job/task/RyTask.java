@@ -1,12 +1,17 @@
-package cn.zgm.pi.service.job;
+package cn.zgm.pi.service.job.task;
 
-import com.sun.javafx.binding.StringFormatter;
 import org.springframework.stereotype.Component;
 
-@Component("jobTask")
-public class JobTask {
+/**
+ * @author Mr. Zhang
+ * @description 定时任务调度测试
+ * @date 2019-09-12 11:00
+ * @website https://www.zhangguimin.cn
+ */
+@Component("ryTask")
+public class RyTask {
     public void ryMultipleParams(String s, Boolean b, Long l, Double d, Integer i) {
-        System.out.println(StringFormatter.format("执行多参方法： 字符串类型{}，布尔类型{}，长整型{}，浮点型{}，整形{}", s, b, l, d, i));
+        System.out.println(s + b + l + d + i);
     }
 
     public void ryParams(String params) {
