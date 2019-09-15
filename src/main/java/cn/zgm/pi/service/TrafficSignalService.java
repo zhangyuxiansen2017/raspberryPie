@@ -1,10 +1,7 @@
 package cn.zgm.pi.service;
 
 
-import com.pi4j.io.gpio.GpioController;
-import com.pi4j.io.gpio.GpioPinDigitalOutput;
-import com.pi4j.io.gpio.PinState;
-import com.pi4j.io.gpio.RaspiPin;
+import com.pi4j.io.gpio.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -18,9 +15,9 @@ public class TrafficSignalService {
 
     @Async("taskExecutor")
     public void trigger() throws InterruptedException {
-        GpioPinDigitalOutput red = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_07, PinState.LOW);
-        GpioPinDigitalOutput green = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_00, PinState.LOW);
-        GpioPinDigitalOutput yellow = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_02, PinState.LOW);
+        GpioPinDigitalOutput red = gpioController.provisionDigitalOutputPin(RaspiBcmPin.GPIO_04, PinState.LOW);
+        GpioPinDigitalOutput green = gpioController.provisionDigitalOutputPin(RaspiBcmPin.GPIO_17, PinState.LOW);
+        GpioPinDigitalOutput yellow = gpioController.provisionDigitalOutputPin(RaspiBcmPin.GPIO_27, PinState.LOW);
 
         while (true){
             red.high();

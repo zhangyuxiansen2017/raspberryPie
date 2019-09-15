@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
  * @date 2019-09-12 11:00
  * @website https://www.zhangguimin.cn
  */
-@Component("ryTask")
-public class RyTask {
+@Component("jobTask")
+public class JobTask {
     public void ryMultipleParams(String s, Boolean b, Long l, Double d, Integer i) {
         System.out.println(s + b + l + d + i);
     }

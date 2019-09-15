@@ -19,8 +19,8 @@ public class UltrasonicService {
     private GpioController gpio;
 
     public List<Double> ultrasonic() {
-        GpioPinDigitalOutput sensorTriggerPin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00);
-        GpioPinDigitalInput sensorEchoPin = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, PinPullResistance.PULL_DOWN);
+        GpioPinDigitalOutput sensorTriggerPin = gpio.provisionDigitalOutputPin(RaspiBcmPin.GPIO_17);
+        GpioPinDigitalInput sensorEchoPin = gpio.provisionDigitalInputPin(RaspiBcmPin.GPIO_27, PinPullResistance.PULL_DOWN);
 
         List<Double> list = new ArrayList<>(5);
         for (int i = 0; i < 5; i++) {
