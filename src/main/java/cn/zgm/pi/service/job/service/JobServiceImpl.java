@@ -3,7 +3,7 @@ package cn.zgm.pi.service.job.service;
 import cn.zgm.pi.entity.Job;
 import cn.zgm.pi.mapper.JobMapper;
 import cn.zgm.pi.service.job.util.CronUtils;
-import cn.zgm.pi.service.job.util.ScheduleConstants;
+import cn.zgm.pi.constant.ScheduleConstants;
 import cn.zgm.pi.service.job.util.ScheduleUtils;
 import cn.zgm.pi.service.job.util.TaskException;
 import org.quartz.JobDataMap;
@@ -27,7 +27,6 @@ import java.util.List;
 public class JobServiceImpl implements IJobService {
     @Autowired
     private Scheduler scheduler;
-
     @Autowired
     private JobMapper jobMapper;
 

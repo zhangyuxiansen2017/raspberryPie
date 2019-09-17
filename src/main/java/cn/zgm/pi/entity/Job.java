@@ -1,6 +1,6 @@
 package cn.zgm.pi.entity;
 
-import cn.zgm.pi.service.job.util.ScheduleConstants;
+import cn.zgm.pi.constant.ScheduleConstants;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;

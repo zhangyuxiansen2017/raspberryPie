@@ -1,4 +1,4 @@
-package cn.zgm.pi.service.job.util;
+package cn.zgm.pi.constant;
 
 /**
  * @author Mr. Zhang

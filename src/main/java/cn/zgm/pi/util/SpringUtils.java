@@ -7,8 +7,10 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.stereotype.Component;
 
 /**
- * @author zhang
- * @date 2018年12月11日 下午4:02:33
+ * @description
+ * @author Mr. Zhang
+ * @date 2019-09-16 11:41
+ * @website https://www.zhangguimin.cn
  */
 @Component
 public class SpringUtils implements BeanFactoryPostProcessor {

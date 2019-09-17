@@ -19,8 +19,8 @@ public class GpioConfig {
     @Bean
     public GpioController gpioController() {
         GpioFactory.setDefaultProvider(new RaspiGpioProvider(RaspiPinNumberingScheme.BROADCOM_PIN_NUMBERING));
-        GpioController gpioController = GpioFactory.getInstance();
-        return gpioController;
+        GpioController gpio = GpioFactory.getInstance();
+        return gpio;
     }
 
 }

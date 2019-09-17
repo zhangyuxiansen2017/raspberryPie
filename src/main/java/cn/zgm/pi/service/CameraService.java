@@ -17,8 +17,4 @@ public class CameraService {
         run.exec("raspistill -t 2000 -o /home/pi/java/images/" + image);
         return image;
     }
-
-    public void take() throws IOException {
-        photo();
-    }
 }

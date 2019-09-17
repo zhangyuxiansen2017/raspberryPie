@@ -20,7 +20,6 @@ public class InfraredService {
 
         GpioPinDigitalOutput output = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_29, PinState.LOW);
 
-
         input.setShutdownOptions(true);
 
         while (true) {
@@ -37,5 +36,4 @@ public class InfraredService {
             input.setPullResistance(PinPullResistance.PULL_DOWN);
         }
     }
-
 }
