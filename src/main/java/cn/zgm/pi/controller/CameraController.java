@@ -2,7 +2,6 @@ package cn.zgm.pi.controller;
 
 import cn.zgm.pi.service.CameraService;
 import cn.zgm.pi.util.ResultInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +19,11 @@ import java.io.IOException;
 @RequestMapping(value = "/camera")
 public class CameraController {
 
-    @Autowired
-    private CameraService cameraService;
+    private final CameraService cameraService;
+
+    public CameraController(CameraService cameraService) {
+        this.cameraService = cameraService;
+    }
 
     @GetMapping(value = "/take")
     @ResponseBody

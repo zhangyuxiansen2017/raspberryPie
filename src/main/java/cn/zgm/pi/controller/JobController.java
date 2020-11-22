@@ -4,7 +4,6 @@ import cn.zgm.pi.entity.Job;
 import cn.zgm.pi.service.job.service.IJobService;
 import cn.zgm.pi.util.ResultInfo;
 import org.quartz.SchedulerException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +21,11 @@ import java.util.List;
 @RequestMapping(value = "/job")
 public class JobController {
 
-    @Autowired
-    private IJobService jobService;
+    private final IJobService jobService;
+
+    public JobController(IJobService jobService) {
+        this.jobService = jobService;
+    }
 
     /**
      * 获取所有任务页面
@@ -48,7 +50,7 @@ public class JobController {
     @ResponseBody
     @GetMapping(value = "/stopJob")
     public ResultInfo stopJob(Job Job) {
-        int i = 0;
+        int i;
         try {
             i = jobService.pauseJob(Job);
         } catch (SchedulerException e) {

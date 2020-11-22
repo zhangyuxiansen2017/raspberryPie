@@ -44,7 +44,7 @@ public interface ScheduleConstants {
          */
         PAUSE("1");
 
-        private String value;
+        private final String value;
 
         Status(String value) {
             this.value = value;
